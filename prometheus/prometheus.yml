@@ -1,0 +1,27 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Prometheus scrapes itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['prometheus:9090']
+
+  # cAdvisor (container metrics)
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+
+  # Netdata (Prometheus format)
+  - job_name: 'netdata'
+    metrics_path: /api/v1/allmetrics
+    params:
+      format: [prometheus]
+    static_configs:
+      - targets: ['netdata:19999']
+
+  # Node Exporter (Pi host metrics) — dashboard expects job="node"
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
