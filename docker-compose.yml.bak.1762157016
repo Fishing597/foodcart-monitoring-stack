@@ -59,29 +59,8 @@ services:
       - portainer-data:/data
     restart: unless-stopped
 
-  netdata:
-    image: netdata/netdata:stable
-    container_name: netdata
-    cap_add:
-      - SYS_PTRACE
-    security_opt:
-      - apparmor:unconfined
-    ports:
-      - "19999:19999"
-    volumes:
-      - netdata-lib:/var/lib/netdata
-      - netdata-cache:/var/cache/netdata
-      - /etc/passwd:/host/etc/passwd:ro
-      - /etc/group:/host/etc/group:ro
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /etc/os-release:/host/etc/os-release:ro
-    restart: unless-stopped
-
 volumes:
   prometheus-data:
   grafana-data:
   kuma-data:
   portainer-data:
-  netdata-lib:
-  netdata-cache:

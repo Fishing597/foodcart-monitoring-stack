@@ -1,0 +1,13 @@
+volumes:
+  grafana-data:
+    external: true
+    name: grafana_data
+  portainer-data:
+    external: true
+    name: portainer_data
+  netdata-lib:
+    external: true
+    name: netdatalib
+  netdata-cache:
+    external: true
+    name: netdataconfig
